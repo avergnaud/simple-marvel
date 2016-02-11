@@ -7,11 +7,6 @@ import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
 
-/**
- * 
- * @author GA03347
- *
- */
 public class Writer {
 	
 	/**

@@ -7,8 +7,6 @@ import java.security.NoSuchAlgorithmException;
 /**
  * https://fr.wikipedia.org/wiki/MD5
  * requis pour appeler les services MARVEL
- * @author Adrien
- *
  */
 public class MD5 {
 

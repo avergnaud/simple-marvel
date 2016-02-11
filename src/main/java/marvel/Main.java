@@ -13,8 +13,6 @@ import com.google.gson.Gson;
 
 /**
  * Récupère les 20 premiers perso MARVEL
- * @author Adrien
- *
  */
 public class Main {
 
