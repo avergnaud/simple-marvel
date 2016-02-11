@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 public class MyPropertiesTest extends TestCase {
 
-	MyProperties props = new MyProperties();
+	MyProperties props = MyProperties.getInstance();
 	
 	public void testGet() {
 		String apiKeyValue = props.get("apikey");

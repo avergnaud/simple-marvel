@@ -1,6 +1,6 @@
-package marvel.api;
+package marvel.model;
 
-public class SeriesSummary {
+public class ComicSummary {
 
 	private String resourceURI;
 	private String name;

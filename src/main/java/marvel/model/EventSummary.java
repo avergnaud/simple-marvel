@@ -1,4 +1,4 @@
-package marvel.api;
+package marvel.model;
 
 public class EventSummary {
 

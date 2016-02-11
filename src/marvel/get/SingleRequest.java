@@ -1,23 +1,19 @@
 package marvel.get;
 
-import java.io.BufferedReader;
+import java.net.URLConnection;
+import java.net.URL;
+import java.net.MalformedURLException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.net.UnknownHostException;
+import java.io.BufferedReader;
 
 import marvel.props.MyProperties;
 
-import org.apache.commons.io.IOUtils;
-
-/**
- * Utilise une HttpURLConnection pour faire une requête unique
- */
 public class SingleRequest {
 	
-	MyProperties props = MyProperties.getInstance();
+	MyProperties props = new MyProperties();
 	int tries = 0;
 	
 	public StringBuilder get(String url) {
@@ -43,10 +39,18 @@ public class SingleRequest {
 			tries++;
 			sb = get(url);
 			
+		} catch(MalformedURLException e) {
+			e.printStackTrace();
 		} catch(IOException e) {
 			e.printStackTrace();
 		} finally {
-			IOUtils.closeQuietly(br);
+			if(br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}			
 		}
 		return sb;
 	}

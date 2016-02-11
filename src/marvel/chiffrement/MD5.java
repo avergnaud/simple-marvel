@@ -1,15 +1,9 @@
 package marvel.chiffrement;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.io.UnsupportedEncodingException;
 
-/**
- * https://fr.wikipedia.org/wiki/MD5
- * requis pour appeler les services MARVEL
- * @author Adrien
- *
- */
 public class MD5 {
 
 	public String hash(long ts, String privateKey, String publicKey) {

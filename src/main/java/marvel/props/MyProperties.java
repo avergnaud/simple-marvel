@@ -1,19 +1,22 @@
 package marvel.props;
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.commons.io.IOUtils;
+
 /**
- * TODO http://thecodersbreakfast.net/index.php?post/2008/02/25/26-de-la-bonne-implementation-du-singleton-en-java
- * @author Adrien
- *
+ * http://thecodersbreakfast.net/index.php?post/2008/02/25/26-de-la-bonne-implementation-du-singleton-en-java
  */
 public class MyProperties {
 	
-	Properties props = null;
+	/* Instance unique pré-initialisée */
+	private static MyProperties INSTANCE = new MyProperties();
 	
-	public MyProperties() {
+	private Properties props = null;
+	
+	private MyProperties() {
 		InputStream is = null;
 		try {
 			is = getClass().getResourceAsStream("/config.properties");
@@ -23,15 +26,16 @@ public class MyProperties {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			IOUtils.closeQuietly(is);
 		}
 	}
 	
 	public String get(String key) {
 		return props.getProperty(key);
+	}
+	
+	/** Point d'accès pour l'instance unique du singleton */
+	public static MyProperties getInstance() {
+		return INSTANCE;
 	}
 }

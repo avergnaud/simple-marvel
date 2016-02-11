@@ -1,4 +1,4 @@
-package marvel.api;
+package marvel.model;
 
 import java.util.ArrayList;
 import java.util.List;

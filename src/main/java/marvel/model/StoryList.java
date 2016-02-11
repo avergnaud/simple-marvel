@@ -1,13 +1,12 @@
-package marvel.api;
+package marvel.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EvenList {
+public class StoryList {
 
 	private int available;
 	private int returned;
 	private String collectionURI;
-	private List<EventSummary> items = new ArrayList<EventSummary>();
-
+	private List<StorySummary> items = new ArrayList<StorySummary>();
 }
