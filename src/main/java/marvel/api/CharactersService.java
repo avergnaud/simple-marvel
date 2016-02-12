@@ -8,7 +8,7 @@ import marvel.get.CharacterRequest;
 import marvel.get.CharactersURI;
 
 /**
- * Builder
+ * Effective Java item 2
  */
 public class CharactersService {
 
@@ -57,7 +57,7 @@ public class CharactersService {
 	}
 
 	/**
-	 * entrée : rien, retour : List<Chara>
+	 * récupère les personnages
 	 */
 	public List<marvel.model.Character> get() {
 		
