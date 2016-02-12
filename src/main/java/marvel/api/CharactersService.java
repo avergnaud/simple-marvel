@@ -20,13 +20,13 @@ public class CharactersService {
 	public static class Builder {
 
 		// Optionnal parameters
-		private int limiteCat;
+		private int limite;
 		private String name;
 		private String nameStartsWith;
 		private LocalDate modifiedSince;
 
-		public Builder limiteCat(int val) {
-			limiteCat = val;
+		public Builder limite(int val) {
+			limite = val;
 			return this;
 		}
 		public Builder name(String val) {
@@ -50,7 +50,7 @@ public class CharactersService {
 	}
 
 	private CharactersService(Builder builder) {
-		limite = builder.limiteCat;
+		limite = builder.limite;
 		name = builder.name;
 		nameStartsWith = builder.nameStartsWith;
 		modifiedSince = builder.modifiedSince;

@@ -23,9 +23,8 @@ public class Main {
 				"80");
 
 		//get
-		CharactersService characters = new CharactersService
-				.Builder()
-				.limiteCat(107)
+		CharactersService characters = new CharactersService.Builder()
+				.limite(1000)
 				.modifiedSince(LocalDate.of(2013, Month.JANUARY, 1))
 				.build();
 		List<marvel.model.Character> chars = characters.get();
