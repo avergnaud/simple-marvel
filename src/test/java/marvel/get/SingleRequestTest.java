@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 public class SingleRequestTest extends TestCase {
 
-	SingleRequest sr = new SingleRequest();
+	SimpleHTTPRequest sr = new SimpleHTTPRequest();
 	
 	public void testGet() {
 		StringBuilder retour = sr.get("http://www.cat-amania.com/");

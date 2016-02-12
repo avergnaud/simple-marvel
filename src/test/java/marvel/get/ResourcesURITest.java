@@ -4,13 +4,17 @@ import junit.framework.TestCase;
 
 public class ResourcesURITest extends TestCase {
 
+	/**
+	 * TODO : bad pattern
+	 */
 	public void testBuild() {
-
-		long ts = 1454345050;
-		String retourAttendu = "http://gateway.marvel.com/v1/public/characters?ts=1454345050&apikey=ac627b5a9da2dd5127e9583595c671f9&hash=8dc4bc776b18ccd6b0799b0445f03144";
-
-		String out = ResourcesURI.characters(ts);
-		assertTrue(retourAttendu.equals(out));
+//		String out = CharactersURI.getRequest(0, 0, null, null, null);
+//		String out = CharactersURI.getRequest(10, 21, null, null, null);
+//		String out = CharactersURI.getRequest(0, 0, null, "Wol", null);
+//		String out = CharactersURI.getRequest(0, 0, null, null, LocalDate.of(2016, Month.JANUARY, 1));
+		String out = CharactersURI.getRequest(0, 0, "Wolverine", null, null);
+		System.out.println(out);
+		assertTrue(true);
 	}
 
 }

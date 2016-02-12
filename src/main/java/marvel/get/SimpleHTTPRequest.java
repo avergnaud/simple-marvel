@@ -15,7 +15,7 @@ import org.apache.commons.io.IOUtils;
 /**
  * Utilise une HttpURLConnection pour faire une requête unique
  */
-public class SingleRequest {
+public class SimpleHTTPRequest {
 	
 	MyProperties props = MyProperties.getInstance();
 	int tries = 0;
