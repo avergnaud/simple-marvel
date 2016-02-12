@@ -1,9 +1,11 @@
 package marvel;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
-import marvel.get.CharacterRequest;
-import marvel.get.Characters;
+import marvel.api.APIConfiguration;
+import marvel.api.CharactersService;
 
 /**
  * Récupère les 20 premiers perso MARVEL
@@ -11,12 +13,21 @@ import marvel.get.Characters;
 public class Main {
 
 	public static void main(String[] args) {
-	
-		//Récupération et écriture
-		CharacterRequest request = new CharacterRequest();
-		Characters characters = new Characters.Builder()
-		.limiteCat(10000)
-		.build();
+
+		//conf
+		APIConfiguration.getInstance().init(
+				"http://gateway.marvel.com/v1/public/characters", 
+				"ac627b5a9da2dd5127e9583595c671f9", 
+				"c2110625d1f04ad9cf37d57cd2e9e4e2bddc6fc1", 
+				"px-internet", 
+				"80");
+
+		//get
+		CharactersService characters = new CharactersService
+				.Builder()
+				.limiteCat(107)
+				.modifiedSince(LocalDate.of(2013, Month.JANUARY, 1))
+				.build();
 		List<marvel.model.Character> chars = characters.get();
 		System.out.println("nombre de characters retournés " + chars.size());
 	}

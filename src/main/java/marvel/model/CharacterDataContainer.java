@@ -15,6 +15,10 @@ public class CharacterDataContainer {
 		return offset;
 	}
 
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
 	public int getLimit() {
 		return limit;
 	}

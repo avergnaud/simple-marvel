@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import marvel.api.APIConfiguration;
 import marvel.chiffrement.MD5;
-import marvel.props.MyProperties;
 
 /**
  * Construit une URL de requête GET pour récupérer des perso MARVEL
@@ -15,19 +15,15 @@ public class CharactersURI {
 	
 	static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
 
-	public static String getRequest(int offset, int limit, String name, String nameStartsWith, LocalDate modifiedSince) {
+	public static String getRequestURL(int offset, int limit, String name, String nameStartsWith, LocalDate modifiedSince) {
 
-		//2015-01-12 (12 janvier 2015)
+		String rootUrl = APIConfiguration.getInstance().getRootUrl();
+		String publicKey = APIConfiguration.getInstance().getPublicKey();
+		String privateKey = APIConfiguration.getInstance().getPrivateKey();
 		
 		LocalDateTime now = LocalDateTime.now();
 		ZoneId zoneId = ZoneId.systemDefault();
 		long ts = now.atZone(zoneId).toEpochSecond();
-		
-		MyProperties props = MyProperties.getInstance();
-		
-		String rootUrl = props.get("rootUrl");
-		String publicKey = props.get("publicKey");
-		String privateKey = props.get("privateKey");
 
 		MD5 md5 = new MD5();
 		String hash = md5.hash(ts, privateKey, publicKey);

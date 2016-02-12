@@ -8,10 +8,9 @@ import com.google.gson.Gson;
 
 public class CharacterRequest {
 
-	public List<marvel.model.Character> getCharacters(
-			String charactersURIRequest) {
+	public List<marvel.model.Character> getCharacters(String charactersURIRequest) {
 
-		System.out.println("REQUETE : " + charactersURIRequest);
+		System.out.println("REQUETE - URL : " + charactersURIRequest);
 		
 		// Appel HTTP
 		StringBuilder sb = new SimpleHTTPRequest().get(charactersURIRequest);
@@ -23,7 +22,7 @@ public class CharacterRequest {
 		List<marvel.model.Character> maListe = resultatRequeteObjet.getData()
 				.getResults();
 		
-		System.out.println("REPONSE size : " + maListe.size());
+		System.out.println("REPONSE - size : " + maListe.size());
 
 		return maListe;
 	}

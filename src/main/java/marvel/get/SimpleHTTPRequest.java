@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.UnknownHostException;
 
-import marvel.props.MyProperties;
+import marvel.api.APIConfiguration;
 
 import org.apache.commons.io.IOUtils;
 
@@ -17,12 +17,15 @@ import org.apache.commons.io.IOUtils;
  */
 public class SimpleHTTPRequest {
 	
-	MyProperties props = MyProperties.getInstance();
-	int tries = 0;
-	
 	public StringBuilder get(String url) {
-		if(tries > 1) return null;
-	
+		
+		String proxyHost = APIConfiguration.getInstance().getProxyHost();
+		String proxyPort = APIConfiguration.getInstance().getProxyPort();
+		if(proxyHost != null && proxyPort != null) {
+			System.setProperty("http.proxyHost", proxyHost);
+			System.setProperty("http.proxyPort", proxyPort);
+		}
+		
 		InputStream is = null;
 		BufferedReader br = null;
 		String line;
@@ -37,12 +40,8 @@ public class SimpleHTTPRequest {
 			}
 			
 		} catch (UnknownHostException e) {
-			System.out.println("retrying with proxy");
-			System.setProperty("http.proxyHost", props.get("maafproxy.host"));
-			System.setProperty("http.proxyPort", props.get("maafproxy.port"));
-			tries++;
-			sb = get(url);
-			
+			System.out.println("SET PROXY ?");
+			e.printStackTrace();
 		} catch(IOException e) {
 			e.printStackTrace();
 		} finally {
