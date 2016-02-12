@@ -7,9 +7,6 @@ import java.util.List;
 import marvel.api.APIConfiguration;
 import marvel.api.CharactersService;
 
-/**
- * Récupère les 20 premiers perso MARVEL
- */
 public class Main {
 
 	public static void main(String[] args) {
