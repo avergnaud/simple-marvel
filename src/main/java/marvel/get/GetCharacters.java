@@ -6,14 +6,14 @@ import marvel.model.CharacterDataWrapper;
 
 import com.google.gson.Gson;
 
-public class CharacterRequest {
+public class GetCharacters {
 
 	/**
 	 * Récupère des persos à partir d'une URI
 	 * @param charactersURIRequest URI
 	 * @return persos marvel.model.Character
 	 */
-	public List<marvel.model.Character> getCharacters(String charactersURIRequest) {
+	public List<marvel.model.Character> fromURL(String charactersURIRequest) {
 
 		System.out.println("REQUETE - URL : " + charactersURIRequest);
 		

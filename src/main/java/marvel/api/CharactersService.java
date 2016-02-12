@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import marvel.get.CharacterRequest;
-import marvel.get.CharactersURI;
+import marvel.get.GetCharacters;
+import marvel.get.ConstruitURL;
 
 /**
  * Effective Java item 2
@@ -66,9 +66,9 @@ public class CharactersService {
 		List<marvel.model.Character> characters = null;
 
 		if (limite <= limiteMarvel) {
-			String request = CharactersURI.getRequestURL(0, limite, name,
+			String request = ConstruitURL.avecParams(0, limite, name,
 					nameStartsWith, modifiedSince);
-			characters = new CharacterRequest().getCharacters(request);
+			characters = new GetCharacters().fromURL(request);
 		} else {
 			int quotient = limite / limiteMarvel;
 			int remainder = limite % limiteMarvel;
@@ -76,19 +76,19 @@ public class CharactersService {
 			boolean resteDesPersoARecuperer = true;
 			int i = 0;
 			for (; i < quotient && resteDesPersoARecuperer; i++) {
-				String request = CharactersURI.getRequestURL(i * limiteMarvel,
+				String request = ConstruitURL.avecParams(i * limiteMarvel,
 						limiteMarvel, name, nameStartsWith, modifiedSince);
-				List<marvel.model.Character> lot = new CharacterRequest()
-						.getCharacters(request);
+				List<marvel.model.Character> lot = new GetCharacters()
+						.fromURL(request);
 				if (lot.size() == 0) {
 					resteDesPersoARecuperer = false;
 				}
 				characters.addAll(lot);
 			}
 			if(resteDesPersoARecuperer) {				
-				String request = CharactersURI.getRequestURL(i * limiteMarvel,
+				String request = ConstruitURL.avecParams(i * limiteMarvel,
 						remainder, name, nameStartsWith, modifiedSince);
-				characters.addAll(new CharacterRequest().getCharacters(request));
+				characters.addAll(new GetCharacters().fromURL(request));
 			}
 		}
 

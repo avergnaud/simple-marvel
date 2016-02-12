@@ -11,11 +11,11 @@ import marvel.chiffrement.MD5;
 /**
  * Construit une URL de requête GET pour récupérer des perso MARVEL
  */
-public class CharactersURI {
+public class ConstruitURL {
 	
 	static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
 
-	public static String getRequestURL(int offset, int limit, String name, String nameStartsWith, LocalDate modifiedSince) {
+	public static String avecParams(int offset, int limit, String name, String nameStartsWith, LocalDate modifiedSince) {
 
 		String rootUrl = APIConfiguration.getInstance().getRootUrl();
 		String publicKey = APIConfiguration.getInstance().getPublicKey();

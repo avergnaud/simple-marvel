@@ -3,7 +3,7 @@ package marvel.get;
 import marvel.api.APIConfiguration;
 import junit.framework.TestCase;
 
-public class CharactersURITest extends TestCase {
+public class ConstruitURLTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		APIConfiguration.getInstance().init(
@@ -14,8 +14,8 @@ public class CharactersURITest extends TestCase {
 				"80");
 	}
 	
-	public void testGetRequestURL() {
-		String url = CharactersURI.getRequestURL(0, 1, null, null, null);
+	public void testAvecParams() {
+		String url = ConstruitURL.avecParams(0, 1, null, null, null);
 		
 		assertTrue(url.contains("apikey=ac627b5a9da2dd5127e9583595c671"));
 	}
