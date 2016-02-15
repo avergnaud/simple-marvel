@@ -106,4 +106,11 @@ public class Character {
 		this.series = series;
 	}
 
+	@Override
+	public String toString() {
+		return name + " : " + description;
+	}
+	
+	
+
 }

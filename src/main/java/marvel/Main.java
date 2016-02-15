@@ -19,12 +19,16 @@ public class Main {
 			.init();
 		
 		CharactersRequest firstRequest = api.requestBuilder()
-			.limite(101)
-			.modifiedSince(LocalDate.of(2013, Month.JANUARY, 15))
-			.build();
+				.modifiedSince(LocalDate.of(2015, Month.JANUARY, 1))
+				.limite(200)
+				.build();
 		
 		List<marvel.model.Character> persos = firstRequest.get();
 		System.out.println("nombre de characters retournés " + persos.size());
+		
+		persos.stream()
+			.filter(character -> !"".equals(character.getDescription()))
+			.forEach(System.out::println);
 
 	}
 }

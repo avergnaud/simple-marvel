@@ -30,7 +30,7 @@ class MultipleHttpRequests extends CharactersRequest {
 			}
 			characters.addAll(lot);
 		}
-		if (resteDesPersoARecuperer) {
+		if (remainder != 0 && resteDesPersoARecuperer) {
 			String request = ConstruitURL.avecLesParametres(api, i * api.limiteMarvel,
 					remainder, name, nameStartsWith, modifiedSince);
 			characters.addAll(RecupereCharacters.depuisURL(api, request));
