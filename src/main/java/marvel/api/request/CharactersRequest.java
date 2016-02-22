@@ -1,14 +1,12 @@
-package marvel.api;
+package marvel.api.request;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
-import marvel.util.ConstruitURL;
-import marvel.util.RecupereCharacters;
+import marvel.api.CharactersAPI;
 
 /**
- * Effective Java item 2
+ * api.requestBuilder().build()
  */
 public class CharactersRequest {
 
@@ -32,7 +30,7 @@ public class CharactersRequest {
 		public Builder(CharactersAPI api) {
 			this.api = api;
 		}
-
+		/**default is 20*/
 		public Builder limite(int val) {
 			limite = val;
 			return this;
@@ -67,12 +65,12 @@ public class CharactersRequest {
 	}
 
 	/**
-	 * API ensures this method is always overridden
+	 * returns a list of MARVEL characters
 	 */
 	public List<marvel.model.Character> get() {
 
 		List<marvel.model.Character> characters = null;
-		//must be overriden
+		//API ensures this method is always overridden
 		return characters;
 
 	}

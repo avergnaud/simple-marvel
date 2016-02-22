@@ -1,4 +1,4 @@
-package marvel.api;
+package marvel.api.request;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,9 @@ import java.util.List;
 import marvel.util.ConstruitURL;
 import marvel.util.RecupereCharacters;
 
+/*
+ * Récupère des persos en plusieurs requetes
+ */
 class MultipleHttpRequests extends CharactersRequest {
 	MultipleHttpRequests(Builder builder) {
 		super(builder);
@@ -21,18 +24,20 @@ class MultipleHttpRequests extends CharactersRequest {
 		boolean resteDesPersoARecuperer = true;
 		int i = 0;
 		for (; i < quotient && resteDesPersoARecuperer; i++) {
-			String request = ConstruitURL.avecLesParametres(api, i * api.limiteMarvel,
-					api.limiteMarvel, name, nameStartsWith, modifiedSince);
-			List<marvel.model.Character> lot = RecupereCharacters.depuisURL(api,
-					request);
+			String request = ConstruitURL.avecLesParametres(api, i
+					* api.limiteMarvel, api.limiteMarvel, name, nameStartsWith,
+					modifiedSince);
+			List<marvel.model.Character> lot = RecupereCharacters.depuisURL(
+					api, request);
 			if (lot.size() == 0) {
 				resteDesPersoARecuperer = false;
 			}
 			characters.addAll(lot);
 		}
 		if (remainder != 0 && resteDesPersoARecuperer) {
-			String request = ConstruitURL.avecLesParametres(api, i * api.limiteMarvel,
-					remainder, name, nameStartsWith, modifiedSince);
+			String request = ConstruitURL.avecLesParametres(api, i
+					* api.limiteMarvel, remainder, name, nameStartsWith,
+					modifiedSince);
 			characters.addAll(RecupereCharacters.depuisURL(api, request));
 		}
 

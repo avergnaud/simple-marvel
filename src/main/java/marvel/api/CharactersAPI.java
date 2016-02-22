@@ -1,37 +1,42 @@
 package marvel.api;
 
+import marvel.api.request.CharactersRequest;
+
 /**
- * Builder pour la configuration
+ * CharactersAPI api = CharactersAPI.configureKeys("publicKey", "privateKey").init();
  */
 public class CharactersAPI {
-	
-	//Required
+
+	// Required
 	public final String publicKey;
 	public final String privateKey;
-	//Optionnal
+	// Optionnal
 	public final String rootUrl;
 	public final int limiteMarvel;
 	public final String proxyHost;
 	public final String proxyPort;
 
 	public static class Builder {
-		//Required
+		
+		// Required
 		private String publicKey;
 		private String privateKey;
-		//Optionnal
+		// Optionnal
 		private String rootUrl = "http://gateway.marvel.com/v1/public/characters";
 		private int limiteMarvel = 100;
 		private String proxyHost;
 		private String proxyPort;
-		
+
 		public Builder(String publicKey, String privateKey) {
 			this.publicKey = publicKey;
 			this.privateKey = privateKey;
 		}
+		/**default is http://gateway.marvel.com/v1/public/characters*/
 		public Builder rootUlr(String val) {
 			rootUrl = val;
 			return this;
 		}
+		/**default is 100*/
 		public Builder limiteMarvel(int val) {
 			limiteMarvel = val;
 			return this;
@@ -44,10 +49,12 @@ public class CharactersAPI {
 			proxyPort = val;
 			return this;
 		}
+
 		public CharactersAPI init() {
 			return new CharactersAPI(this);
 		}
 	}
+
 	private CharactersAPI(Builder builder) {
 		publicKey = builder.publicKey;
 		privateKey = builder.privateKey;
@@ -56,9 +63,11 @@ public class CharactersAPI {
 		proxyHost = builder.proxyHost;
 		proxyPort = builder.proxyPort;
 	}
+	
 	public static Builder configureKeys(String publicKey, String privateKey) {
 		return new Builder(publicKey, privateKey);
 	}
+
 	public CharactersRequest.Builder requestBuilder() {
 		return new CharactersRequest.Builder(this);
 	}

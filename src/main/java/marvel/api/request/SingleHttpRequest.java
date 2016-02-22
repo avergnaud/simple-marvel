@@ -1,16 +1,18 @@
-package marvel.api;
+package marvel.api.request;
 
 import java.util.List;
 
 import marvel.util.ConstruitURL;
 import marvel.util.RecupereCharacters;
 
-
+/*
+ * Récupère des persos en une seule requête
+ */
 class SingleHttpRequest extends CharactersRequest {
 	SingleHttpRequest(Builder builder) {
 		super(builder);
 	}
-	
+
 	public List<marvel.model.Character> get() {
 
 		List<marvel.model.Character> characters = null;
@@ -22,5 +24,5 @@ class SingleHttpRequest extends CharactersRequest {
 		return characters;
 
 	}
-	
+
 }
