@@ -75,4 +75,8 @@ public class CharactersRequest {
 
 	}
 
+	public void alimente(List<marvel.model.Character> liste) {
+		
+	}
+	
 }

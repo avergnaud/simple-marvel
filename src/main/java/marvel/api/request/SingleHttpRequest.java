@@ -25,4 +25,12 @@ class SingleHttpRequest extends CharactersRequest {
 
 	}
 
+	public void alimente(List<marvel.model.Character> characters) {
+
+		String request = ConstruitURL.avecLesParametres(api, 0, limite, name,
+				nameStartsWith, modifiedSince);
+		characters = RecupereCharacters.depuisURL(api, request);
+
+	}
+
 }

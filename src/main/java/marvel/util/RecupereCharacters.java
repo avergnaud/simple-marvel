@@ -7,12 +7,14 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
-
 import marvel.api.CharactersAPI;
+import marvel.exception.Erreur500Exception;
 import marvel.model.CharacterDataWrapper;
+
+import org.apache.commons.io.IOUtils;
 
 import com.google.gson.Gson;
 
@@ -22,9 +24,10 @@ public class RecupereCharacters {
 	 * Appelle charactersURIRequest et returne les persos MARVEL
 	 * @param URL
 	 * @return persos marvel.model.Character
+	 * @throws Erreur500Exception 
 	 */
 	public static List<marvel.model.Character> depuisURL(CharactersAPI api,
-			String charactersURIRequest) {
+			String charactersURIRequest) throws Erreur500Exception {
 
 		// Proxy éventuel
 		String proxyHost = api.proxyHost;
@@ -40,6 +43,7 @@ public class RecupereCharacters {
 		String line;
 		StringBuilder sb = new StringBuilder();
 		try {
+			System.out.println(charactersURIRequest);
 			URLConnection connection = new URL(charactersURIRequest)
 					.openConnection();
 			is = connection.getInputStream();
@@ -51,13 +55,17 @@ public class RecupereCharacters {
 			System.out.println("SET PROXY ?");
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new Erreur500Exception();
 		} finally {
 			IOUtils.closeQuietly(br);
 		}
 
-		// Mapping json vers java
 		String json = sb.toString();
+		
+		// Mapping json vers java
+		if("".equals(json))
+			throw new Erreur500Exception();
+		
 		Gson gson = new Gson();
 		CharacterDataWrapper resultatRequeteObjet = gson.fromJson(json,
 				CharacterDataWrapper.class);
